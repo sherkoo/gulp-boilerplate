@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     sass = require('gulp-sass'),
     watch = require('gulp-watch');
+    connect = require('gulp-connect');
 
 /**
  * Tasks
@@ -32,17 +33,27 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./css'));
 });
 
+
+// task: Connect to livereload
+gulp.task('connect', function() {
+  connect.server({
+    root: './',
+    livereload: true
+  });
+});
+
 /**
  * Watch
  */
 
 // task: default
-gulp.task('default', ['watch']);
+gulp.task('default', ['connect', 'watch']);
 
 // watch over changes of source files
 gulp.task('watch', function() {
-  gulp.watch('./').on('change', livereload.changed);
+  livereload.listen();
+  gulp.watch('.index.html').on('change', livereload.changed);
   gulp.watch('./js/**', ['scripts']);
   gulp.watch('./scss/**', ['sass']);
-  gulp.watch('./css/**').on('change', livereload.changed);
+  gulp.watch('./css/main.min.css').on('change', livereload.changed);
 });
