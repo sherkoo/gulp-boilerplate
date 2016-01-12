@@ -1,6 +1,9 @@
-gulp
-====
+# Gulp Boilerplate
 
-Simple gulp setup to get things started
+Simple Gulp.js setup to get things started
 
-Deploy, then run "gulp" in cli
+### Install Dependencies
+Run ```$ npm install``` to install dependencies
+
+### You're Ready To Start
+run ```$ gulp```
